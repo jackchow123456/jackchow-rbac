@@ -5,21 +5,20 @@ Rbac是向ThinkPHP 5添加基于角色的权限的简洁而灵活的方式。
 
 ## Contents
 
-- [安装](#installation)
-- [配置](#configuration)
-    - [User relation to roles](#user-relation-to-roles)
-    - [Models](#models)
+- [安装](#安装)
+- [配置](#配置)
+    - [用户与角色的关系](#用户与角色的关系)
+    - [模型](#模型)
         - [Role](#role)
         - [Permission](#permission)
         - [Admin](#admin)
-- [使用](#usage)
-    - [Concepts](#concepts)
-        - [Checking for Roles & Permissions](#checking-for-roles--permissions)
+- [使用](#使用)
+    - [概念](#概念)
+        - [检查用户是否拥有权限](#检查用户是否拥有权限)
         
-- [故障排除](#troubleshooting)
+- [故障排除](#故障排除)
 - [License](#license)
-- [贡献指南](#contribution-guidelines)
-- [附加信息](#additional-information)
+- [Contribution guidelines](#contribution-guidelines)
 
 ## 安装
 
