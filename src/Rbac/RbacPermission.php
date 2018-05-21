@@ -1,13 +1,13 @@
 <?php
 namespace Jackchow\Rbac;
 
-use Rbac\Contracts\RbacPermissionInterface;
-use Rbac\Traits\RbacPermission as RbacPermissionTraits;
+use Jackchow\Rbac\Contracts\RbacPermissionInterface;
+use Jackchow\Rbac\Traits\RbacPermission as RbacPermissionTraits;
 use think\Model;
 
 class RbacPermission extends Model implements RbacPermissionInterface
 {
-    use RbacPermissionTraits;
+    use Jackchow\RbacPermissionTraits;
 
     /**
      * The database table used by the model.

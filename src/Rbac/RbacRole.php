@@ -1,13 +1,13 @@
 <?php
 namespace Jackchow\Rbac;
 
-use Rbac\Contracts\RbacRoleInterface;
-use Rbac\Traits\RbacRole as RbacRoleTraits;
+use Jackchow\Rbac\Contracts\RbacRoleInterface;
+use Jackchow\Rbac\Traits\RbacRole as RbacRoleTraits;
 use think\Model;
 
 class RbacRole extends Model implements RbacRoleInterface
 {
-    use RbacRoleTraits;
+    use Jackchow\RbacRoleTraits;
 
     /**
      * The database table used by the model.
