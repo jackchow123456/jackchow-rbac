@@ -7,7 +7,7 @@ use think\Model;
 
 class RbacRole extends Model implements RbacRoleInterface
 {
-    use Jackchow\RbacRoleTraits;
+    use RbacRoleTraits;
 
     /**
      * The database table used by the model.

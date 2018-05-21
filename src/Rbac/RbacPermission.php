@@ -7,7 +7,7 @@ use think\Model;
 
 class RbacPermission extends Model implements RbacPermissionInterface
 {
-    use Jackchow\RbacPermissionTraits;
+    use RbacPermissionTraits;
 
     /**
      * The database table used by the model.
