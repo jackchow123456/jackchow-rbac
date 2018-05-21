@@ -35,18 +35,18 @@ Rbac是向ThinkPHP 5添加基于角色的权限的简洁而灵活的方式。
 委托使用这些值来引用正确的用户表和模型.
 
 您还可以发布此包的配置以进一步自定义表名称和模型名称空间。
-只需在application文件中添加下面数组代码:
+只需在application/command.php文件中添加下面代码:
 ```bash
 return [
     'Jackchow\Rbac\Command\PublishCommand',
     'Jackchow\Rbac\Command\MigrateCommand',
 ];
 ```
-使用`php think rbac：publish`和`rbac.php`文件就可以在你的config目录下创建。
+然后使用`php think rbac：publish`和`rbac.php`文件就可以在你的config目录下创建。
 
 ### 用户与角色的关系
 
-现在在上面注册了Rbac的生成命令后生成Rbac的迁移文件:
+刚刚在上面注册了Rbac的生成命令后，现在就可以使用命令生成Rbac的迁移文件:
 
 ```bash
 php think rbac:migrate
@@ -54,7 +54,7 @@ php think rbac:migrate
 
 它将生成`<timestamp>_rbac.php` 迁移文件.
 您现在可以使用artisan migrate命令运行它：
-如果你的thinkphp5还没有安装migrate扩展包,请前往安装使用。[点击了解](https://www.kancloud.cn/manual/thinkphp5_1/354133)
+如果你的thinkphp5还没有安装migrate扩展包,请须前往安装才能使用。[点击了解](https://www.kancloud.cn/manual/thinkphp5_1/354133)
 
 ```bash
 php think migrate:run
@@ -149,7 +149,7 @@ class Admins extends Model
 composer dump-autoload
 ```
 
-**你准备好了.**
+**准备好了.**
 
 ## 使用
 
