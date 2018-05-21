@@ -1,0 +1,21 @@
+{
+    "name": "jackchow/rbac",
+    "description": "A Thinkphp5 RBAC Feature",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jack",
+            "email": "775893055@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jackchow\\Rbac\\": "src/Rbac/"
+        }
+    }
+}
