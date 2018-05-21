@@ -1,10 +1,9 @@
 <?php
-namespace Jackchow\Rbac\Database\migrations;
 
 use think\migration\Migrator;
 use Phinx\Db\Adapter\MysqlAdapter;
 
-class migration extends Migrator
+class rbac extends Migrator
 {
     public function up()
     {

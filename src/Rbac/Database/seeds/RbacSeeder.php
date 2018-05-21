@@ -1,5 +1,4 @@
 <?php
-namespace Jackchow\Rbac\Database\seeds;
 
 use think\migration\Seeder;
 

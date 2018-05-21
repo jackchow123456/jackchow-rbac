@@ -56,7 +56,7 @@ class MigrateCommand extends thinkCommand
 
 
         if(file_exists($seed_path)){
-            copy($seeds_from, $seed_path . DIRECTORY_SEPARATOR . $fileName);
+            copy($seeds_from, $seed_path . DIRECTORY_SEPARATOR . 'RbacSeeder.php');
         }
 
         if(file_exists($migrate_path)){

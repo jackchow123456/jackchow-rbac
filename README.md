@@ -42,7 +42,7 @@ return [
     'Jackchow\Rbac\Command\MigrateCommand',
 ];
 ```
-然后使用`php think rbac：publish`和`rbac.php`文件就可以在你的config目录下创建。
+然后使用`php think rbac:publish`和`rbac.php`文件就可以在你的config目录下创建。
 
 ### 用户与角色的关系
 
@@ -80,6 +80,7 @@ hhh,相信你已经懂了.
 使用以下示例在`application\admin\model\Roles.php`内创建角色模型：
 
 ```php
+<?php
 namespace app\admin\model;
 
 use Jackchow\Rbac\RbacRole;
@@ -157,14 +158,18 @@ composer dump-autoload
 让我们从创建以下`角色`和'权限'开始：
 
 ```php
-$owner = new Role();
+$owner = new Roles();
 $owner->name         = 'owner';
 $owner->desription = '网站所有者'; // 可选
+$owner->created_at = date('Y-m-d H:i:s');
+$owner->updated_at = date('Y-m-d H:i:s');
 $owner->save();
 
-$admin = new Role();
-$admin->name         = 'admin';
+$admin = new Roles();
+$admin->name       = 'administrator';
 $admin->desription = '管理员'; // 可选
+$admin->created_at = date('Y-m-d H:i:s');
+$admin->updated_at = date('Y-m-d H:i:s');
 $admin->save();
 ```
 
@@ -172,33 +177,43 @@ $admin->save();
 由于`HasRole`特性，这很容易：
 
 ```php
-$admin = Admin::where('username', 'jack')->find();
+$admin = Admins::where('name', 'hurray')->find();
 
 // 为用户分配角色
 
-$user->roles()->attach($admin->id); 
+$admin->attachRole($admin->id);
+
+//等效于 $admin->roles()->attach($admin->id);
 ```
 
 现在我们只需要为这些角色添加权限：
 
 ```php
-$createPost = new Permission();
+$admin = Roles::where('name', 'administrator')->find();
+
+$owner = Roles::where('name', 'owner')->find();
+
+$createPost = new Permissions();
 $createPost->name         = 'post/edit';
 // 允许用户...
 $createPost->description  = '编辑一篇文章'; // 可选
+$createPost->created_at = date('Y-m-d H:i:s');
+$createPost->updated_at = date('Y-m-d H:i:s');
 $createPost->save();
 
-$editUser = new Permission();
+$editUser = new Permissions();
 $editUser->name         = 'post/create';
 // 允许用户...
 $editUser->description  = '创建一篇文章'; // optional
+$editUser->created_at = date('Y-m-d H:i:s');
+$editUser->updated_at = date('Y-m-d H:i:s');
 $editUser->save();
 
+$admin->attachPermission($createPost->id);
+//等效于  $admin->perms()->sync(array($createPost->id));
 
-$admin->perms()->sync(array($createPost->id));
-
-
-$owner->perms()->sync(array($createPost->id, $editUser->id));
+$owner->attachPermissions(array($createPost->id, $editUser->id));
+//等效于  $owner->perms()->sync(array($createPost->id, $editUser->id));
 ```
 
 #### 检查用户是否拥有权限
