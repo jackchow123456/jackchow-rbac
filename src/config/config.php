@@ -11,7 +11,7 @@ return [
     | the role if it is in a different namespace.
     |
     */
-    'role' => 'App\Role',
+    'role' => 'app\admin\model\Roles',
 
     /*
     |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ return [
     | Update the permission if it is in a different namespace.
     |
     */
-    'permission' => 'App\Permission',
+    'permission' => 'app\admin\model\Permissions',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,5 +80,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'role_foreign_key' => 'role_id',
+
+    'permission_foreign_key' => 'permission_id',
 
 ];
