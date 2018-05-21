@@ -9,7 +9,7 @@
             "email": "775893055@qq.com"
         }
     ],
-    "minimum-stability": "master",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.5.0"
     },
