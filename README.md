@@ -42,7 +42,7 @@ return [
     'Jackchow\Rbac\Command\MigrateCommand',
 ];
 ```
-然后使用`php think rbac:publish`和`rbac.php`文件就可以在你的config目录下创建。
+然后使用`php think rbac:publish` 配置文件`rbac.php`就可以自动在你的config目录下创建。
 
 ### 用户与角色的关系
 
@@ -52,12 +52,13 @@ return [
 php think rbac:migrate
 ```
 
-它将生成`<timestamp>_rbac.php` 迁移文件.
-您现在可以使用artisan migrate命令运行它：
+它将生成`<timestamp>_rbac.php` 迁移文件 和 `RbacSeeder.php`数据填充文件.
+您现在可以使用think migrate 和 think seed 命令运行它：
 如果你的thinkphp5还没有安装migrate扩展包,请须前往安装才能使用。[点击了解](https://www.kancloud.cn/manual/thinkphp5_1/354133)
 
 ```bash
 php think migrate:run
+php think seed:run
 ```
 
 迁移后，将出现五个新表格:
@@ -68,6 +69,10 @@ php think migrate:run
 - `permission_role` &mdash; 保存权限和角色之间的 [多对多](https://www.kancloud.cn/manual/thinkphp5_1/354060) 关系 
 
 如果系统已经存在admins表 可以在生成的迁移文件注释相应的迁移代码。
+
+小提示一下：如果你已经执行了迁移命令，又想修改迁移文件。可以使用命令`think migrate:rollback`回滚一下
+
+如果你还没有创建admin模块 可以使用命令`php think build --module admin`生成
 
 生成迁移文件位置在：\database\migrations  中
 
@@ -155,61 +160,61 @@ composer dump-autoload
 ## 使用
 
 ### 概念
-让我们从创建以下`角色`和'权限'开始：
+让我们从创建以下`角色`和`权限`开始：
 
 ```php
 $owner = new Roles();
 $owner->name         = 'owner';
-$owner->desription = '网站所有者'; // 可选
-$owner->created_at = date('Y-m-d H:i:s');
-$owner->updated_at = date('Y-m-d H:i:s');
+$owner->description  = '网站所有者'; // 可选
+$owner->created_at   = date('Y-m-d H:i:s');
+$owner->updated_at   = date('Y-m-d H:i:s');
 $owner->save();
 
-$admin = new Roles();
-$admin->name       = 'administrator';
-$admin->desription = '管理员'; // 可选
-$admin->created_at = date('Y-m-d H:i:s');
-$admin->updated_at = date('Y-m-d H:i:s');
-$admin->save();
+$administrator = new Roles();
+$administrator->name        = 'administrator';
+$administrator->description = '管理员'; // 可选
+$administrator->created_at  = date('Y-m-d H:i:s');
+$administrator->updated_at  = date('Y-m-d H:i:s');
+$administrator->save();
 ```
 
-接下来，创建两个角色让我们将它们分配给用户。
-由于`HasRole`特性，这很容易：
+接下来，让我们为刚刚创建的两个角色将它们分配给用户。
+这很容易：
 
 ```php
-$admin = Admins::where('name', 'hurray')->find();
+$hurray = Admins::where('name', 'hurray')->find();
 
 // 为用户分配角色
 
-$admin->attachRole($admin->id);
+$hurray->attachRole($administrator->id);
 
-//等效于 $admin->roles()->attach($admin->id);
+//等效于 $admin->roles()->attach($administrator->id);
 ```
 
 现在我们只需要为这些角色添加权限：
 
 ```php
-$admin = Roles::where('name', 'administrator')->find();
+$administrator = Roles::where('name', 'administrator')->find();
 
 $owner = Roles::where('name', 'owner')->find();
 
 $createPost = new Permissions();
-$createPost->name         = 'post/edit';
+$createPost->name         = 'post/create';
 // 允许用户...
-$createPost->description  = '编辑一篇文章'; // 可选
+$createPost->description  = '创建一篇文章'; // 可选
 $createPost->created_at = date('Y-m-d H:i:s');
 $createPost->updated_at = date('Y-m-d H:i:s');
 $createPost->save();
 
 $editUser = new Permissions();
-$editUser->name         = 'post/create';
+$editUser->name         = 'post/edit';
 // 允许用户...
-$editUser->description  = '创建一篇文章'; // optional
+$editUser->description  = '编辑一篇文章'; // optional
 $editUser->created_at = date('Y-m-d H:i:s');
 $editUser->updated_at = date('Y-m-d H:i:s');
 $editUser->save();
 
-$admin->attachPermission($createPost->id);
+$administrator->attachPermission($createPost->id);
 //等效于  $admin->perms()->sync(array($createPost->id));
 
 $owner->attachPermissions(array($createPost->id, $editUser->id));
@@ -221,9 +226,9 @@ $owner->attachPermissions(array($createPost->id, $editUser->id));
 现在我们可以通过执行以下操作来检查角色和权限：
 
 ```php
-
-$admin->can('post/edit');   // false
-$admin->can('post/create'); // true
+$hurray = Admins::where('name', 'hurray')->find();
+$hurray->can('post/edit');   // false
+$hurray->can('post/create'); // true
 ```
 
 到目前为止，已经可以很大的满足到后台用户权限管理功能了。
