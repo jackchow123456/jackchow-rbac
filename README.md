@@ -200,25 +200,25 @@ $owner = Roles::where('name', 'owner')->find();
 
 $createPost = new Permissions();
 $createPost->name         = 'post/create';
-// 允许用户...
+// 允许administrator...
 $createPost->description  = '创建一篇文章'; // 可选
 $createPost->created_at = date('Y-m-d H:i:s');
 $createPost->updated_at = date('Y-m-d H:i:s');
 $createPost->save();
 
-$editUser = new Permissions();
-$editUser->name         = 'post/edit';
-// 允许用户...
-$editUser->description  = '编辑一篇文章'; // optional
-$editUser->created_at = date('Y-m-d H:i:s');
-$editUser->updated_at = date('Y-m-d H:i:s');
-$editUser->save();
+$editPost = new Permissions();
+$editPost->name         = 'post/edit';
+// 允许owner...
+$editPost->description  = '编辑一篇文章'; // optional
+$editPost->created_at = date('Y-m-d H:i:s');
+$editPost->updated_at = date('Y-m-d H:i:s');
+$editPost->save();
 
 $administrator->attachPermission($createPost->id);
 //等效于  $admin->perms()->sync(array($createPost->id));
 
-$owner->attachPermissions(array($createPost->id, $editUser->id));
-//等效于  $owner->perms()->sync(array($createPost->id, $editUser->id));
+$owner->attachPermissions(array($createPost->id, $editPost->id));
+//等效于  $owner->perms()->sync(array($createPost->id, $editPost->id));
 ```
 
 #### 检查用户是否拥有权限

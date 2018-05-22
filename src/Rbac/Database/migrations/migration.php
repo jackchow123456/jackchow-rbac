@@ -62,11 +62,11 @@ class rbac extends Migrator
      */
     public function down()
     {
-        $this->dropTable('admins');
-        $this->dropTable('roles');
         $this->dropTable('role_user');
-        $this->dropTable('permissions');
         $this->dropTable('permission_role');
+        $this->dropTable('roles');
+        $this->dropTable('permissions');
+        $this->dropTable('admins');
     }
 
 }
