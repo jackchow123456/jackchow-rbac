@@ -42,6 +42,7 @@ class rbac extends Migrator
             ->addColumn('sort_order', 'integer', ['default'=>0,'comment'=>'排序'])
             ->addColumn('display_menu', 'integer', ['limit' => MysqlAdapter::INT_TINY,'default'=>0])
             ->addColumn('parent_id', 'integer',['default'=>0])
+            ->addColumn('icon', 'string', ['null' => true,'comment'=>'图标'])
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime')
             ->addIndex(['name'], ['unique' => true])

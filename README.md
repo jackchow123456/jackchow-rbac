@@ -53,8 +53,22 @@ php think rbac:migrate
 ```
 
 它将生成`<timestamp>_rbac.php` 迁移文件 和 `RbacSeeder.php`数据填充文件.
-您现在可以使用think migrate 和 think seed 命令运行它：
+
+
+生成迁移文件位置在：\database\migrations  中
+  
+  
+现在您可以根据自己的需求修改迁移文件
+
+
+如果你修改了迁移文件中某些表的字段 记得也要在seed文件中修改对应的数值，不然seed填充可能会出现无法预测的错误。
+
+然后您现在可以使用think migrate 和 think seed 命令运行它：
+
+
 如果你的thinkphp5还没有安装migrate扩展包,请须前往安装才能使用。[点击了解](https://www.kancloud.cn/manual/thinkphp5_1/354133)
+
+
 
 ```bash
 php think migrate:run
@@ -74,7 +88,6 @@ php think seed:run
 
 如果你还没有创建admin模块 可以使用命令`php think build --module admin`生成
 
-生成迁移文件位置在：\database\migrations  中
 
 hhh,相信你已经懂了.
 
