@@ -152,7 +152,7 @@ class RbacSeeder extends Seeder
                 'updated_at'    => date('Y-m-d H:i:s'),
             ],
             [
-                'name'          => 'role/edit',
+                'name'          => 'role/update',
                 'description'   => '修改角色',
                 'display_menu'  => 0,
                 'parent_id'     => 4,
@@ -230,7 +230,7 @@ class RbacSeeder extends Seeder
                 'updated_at'    => date('Y-m-d H:i:s'),
             ],
             [
-                'name'          => 'permission/edit',
+                'name'          => 'permission/update',
                 'description'   => '修改权限',
                 'display_menu'  => 0,
                 'parent_id'     => 10,
@@ -266,7 +266,7 @@ class RbacSeeder extends Seeder
         $data = [
             [
                 'user_id'    => 1,
-                'permission_id'    => 1,
+                'role_id'    => 1,
             ]
         ];
 
