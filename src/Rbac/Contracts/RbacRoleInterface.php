@@ -4,6 +4,13 @@ namespace Jackchow\Rbac\Contracts;
 Interface RbacRoleInterface
 {
     /**
+     * Many-to-Many relations with the user model.
+     *
+     * @return mixed
+     */
+    public function users();
+
+    /**
      * Many-to-Many relations with Permission.
      *
      * @return mixed

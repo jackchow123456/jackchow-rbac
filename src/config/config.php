@@ -81,6 +81,32 @@ return [
     */
     'role_foreign_key' => 'role_id',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Rbac User Model
+    |--------------------------------------------------------------------------
+    |
+    | This is the User model used by Rbac to create correct relations.
+    | Update the user if it is in a different namespace.
+    |
+    */
+    'user' => 'app\admin\model\Admins',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Rbac Users Table
+    |--------------------------------------------------------------------------
+    |
+    | This is the users table used by Rbac to save users to the database.
+    |
+    */
+    'user_table' => 'admins',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Role Foreign key on Rbac's permission_role Table (Pivot)
+    |--------------------------------------------------------------------------
+    */
     'permission_foreign_key' => 'permission_id',
 
 ];
