@@ -33,7 +33,7 @@ trait RbacUser
     public function can($permission){
         foreach ($this->cachedRoles() as $role) {
             foreach ($role->cachedPermissions() as $perm) {
-                if ($permission == strtolower($perm['name'])) {
+                if ($permission == $perm['name']) {
                     return true;
                 }
             }

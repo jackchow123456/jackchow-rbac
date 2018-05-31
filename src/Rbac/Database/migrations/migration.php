@@ -34,7 +34,7 @@ class rbac extends Migrator
             ->save();
 
         $table = $this->table('permissions',['comment'=>'权限表']);
-        $table->addColumn('name', 'string', ['limit' => 20,'default'=>''])
+        $table->addColumn('name', 'string', ['default'=>''])
             ->addColumn('description', 'string', ['null' => true])
             ->addColumn('level_name', 'string', ['default'=>'','comment'=>'级别递归名称'])
             ->addColumn('level_id', 'string', ['default'=>'','comment'=>'级别递归id'])
