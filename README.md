@@ -215,16 +215,16 @@ $createPost = new Permissions();
 $createPost->name         = 'post/create';
 // 允许administrator...
 $createPost->description  = '创建一篇文章'; // 可选
-$createPost->created_at = date('Y-m-d H:i:s');
-$createPost->updated_at = date('Y-m-d H:i:s');
+$createPost->created_at   = date('Y-m-d H:i:s');
+$createPost->updated_at   = date('Y-m-d H:i:s');
 $createPost->save();
 
 $editPost = new Permissions();
 $editPost->name         = 'post/edit';
 // 允许owner...
 $editPost->description  = '编辑一篇文章'; // optional
-$editPost->created_at = date('Y-m-d H:i:s');
-$editPost->updated_at = date('Y-m-d H:i:s');
+$editPost->created_at   = date('Y-m-d H:i:s');
+$editPost->updated_at   = date('Y-m-d H:i:s');
 $editPost->save();
 
 $administrator->attachPermission($createPost->id);
@@ -243,6 +243,10 @@ $hurray = Admins::where('name', 'hurray')->find();
 $hurray->can('post/edit');   // false
 $hurray->can('post/create'); // true
 ```
+
+小提示：本功能在保存用户和角色之间的关系和角色与权限之间的关系，为了避免大量的sql查询是使用了tp的缓存的哦，
+
+如果你更新了他们之间的关系，记得把缓存清理一下。它们的缓存键名分别是 `rbac_roles_for_user_用户表主键名（参考值：id）` 和 `rbac_permissions_for_role_角色表主键名（参考值：id）`
 
 到目前为止，已经可以很大的满足到后台用户权限管理功能了。
 
