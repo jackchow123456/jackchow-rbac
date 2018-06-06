@@ -16,7 +16,7 @@ class PublishCommand extends thinkCommand
 
     protected function execute(Input $input, Output $output)
     {
-        $from = __DIR__.'../../../config/config.php';
+        $from = __DIR__.'/../../config/config.php';
 
         $to = Loader::getRootPath().'config';
         if(!file_exists($from)){

@@ -19,9 +19,9 @@ class MigrateCommand extends thinkCommand
     protected function execute(Input $input, Output $output)
     {
 
-        $migrate_from = __DIR__.'../../Database/migrations/migration.php';
+        $migrate_from = __DIR__.'/../Database/migrations/migration.php';
 
-        $seeds_from = __DIR__.'../../Database/seeds/RbacSeeder.php';
+        $seeds_from = __DIR__.'/../Database/seeds/RbacSeeder.php';
 
         if(!file_exists($migrate_from)){
             $output->writeln("The Migrations File is missing Please Contact To Author 775893055@qq.com");
