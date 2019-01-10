@@ -27,7 +27,7 @@ trait RbacRole
 
     public function cachedPermissions()
     {
-        $cacheKey = 'rbac_permissions_for_role_'.$this->pk;
+        $cacheKey = 'rbac_permissions_for_role_'.$this[$this->pk];
         return Cache::remember($cacheKey, function () {
             return $this->perms;
         });
