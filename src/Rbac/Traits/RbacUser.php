@@ -12,7 +12,7 @@ trait RbacUser
      */
     public function roles()
     {
-        return $this->belongsToMany(config('rbac.role'), config('rbac.role_user_table'),config('rbac.role_foreign_key'),config('rbac.user_foreign_key'));
+        return $this->belongsToMany(config('database.prefix').config('rbac.role'), config('database.prefix').config('rbac.role_user_table'),config('rbac.role_foreign_key'),config('rbac.user_foreign_key'));
     }
 
     public function cachedRoles()

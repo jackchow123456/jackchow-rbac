@@ -12,7 +12,7 @@ trait RbacRole
      */
     public function perms()
     {
-        return $this->belongsToMany(config('rbac.permission'), config('rbac.permission_role_table'),config('rbac.permission_foreign_key'),config('rbac.role_foreign_key'));
+        return $this->belongsToMany(config('database.prefix').config('rbac.permission'), config('database.prefix').config('rbac.permission_role_table'),config('rbac.permission_foreign_key'),config('rbac.role_foreign_key'));
     }
 
     /**
@@ -22,7 +22,7 @@ trait RbacRole
      */
     public function users()
     {
-        return $this->belongsToMany(config('rbac.user'), config('rbac.role_user_table'),config('rbac.user_foreign_key'),config('rbac.role_foreign_key'));
+        return $this->belongsToMany(config('database.prefix').config('rbac.user'), config('database.prefix').config('rbac.role_user_table'),config('rbac.user_foreign_key'),config('rbac.role_foreign_key'));
     }
 
     public function cachedPermissions()

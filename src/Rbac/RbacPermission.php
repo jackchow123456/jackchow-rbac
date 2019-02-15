@@ -24,6 +24,6 @@ class RbacPermission extends Model implements RbacPermissionInterface
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->table = config('rbac.permissions_table');
+        $this->table = config('database.prefix').config('rbac.permissions_table');
     }
 }

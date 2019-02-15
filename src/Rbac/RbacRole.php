@@ -24,7 +24,7 @@ class RbacRole extends Model implements RbacRoleInterface
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->table = config('rbac.roles_table');
+        $this->table = config('database.prefix').config('rbac.roles_table');
     }
 
 }
