@@ -4,7 +4,6 @@ Rbac是向ThinkPHP 5添加基于角色的权限的简洁而灵活的方式。
 
 
 ## Contents
-
 - [安装](#安装)
 - [配置](#配置)
     - [用户与角色的关系](#用户与角色的关系)
@@ -20,29 +19,29 @@ Rbac是向ThinkPHP 5添加基于角色的权限的简洁而灵活的方式。
 - [License](#license)
 - [Contribution guidelines](#contribution-guidelines)
 
+
 ## 安装
 
-为了安装ThinkPHP 5 Rbac，只需在composer.josn文件中添加
+运行 `composer require jackchow/rbac`
 
-    "jackchow/rbac": "^1.0"
+项目用到TP的migrate扩展包。（Tip：命令运行失败请检查该包是否安装）[点击了解](https://www.kancloud.cn/manual/thinkphp5_1/354133)
 
- 然后运行 `composer install` 或者 `composer update`.
+
 
 
 ## 配置
-
-在 `config/rbac.php` 文件中设置属性值.
-委托使用这些值来引用正确的用户表和模型.
-
 您还可以发布此包的配置以进一步自定义表名称和模型名称空间。
-只需在application/command.php文件中添加下面代码:
+在application/command.php文件中添加下面代码（生成命令）:
 ```bash
 return [
     'Jackchow\Rbac\Command\PublishCommand',
     'Jackchow\Rbac\Command\MigrateCommand',
 ];
 ```
-然后使用`php think rbac:publish` 配置文件`rbac.php`就可以自动在你的config目录下创建。
+然后使用`php think rbac:publish` 生成配置文件`rbac.php` 在config目录下。
+
+在 `config/rbac.php` 文件中设置属性值.
+委托使用这些值来引用正确的用户表和模型.
 
 ### 用户与角色的关系
 
@@ -64,9 +63,6 @@ php think rbac:migrate
 如果你修改了迁移文件中某些表的字段 记得也要在seed文件中修改对应的数值，不然seed填充可能会出现无法预测的错误。
 
 然后您现在可以使用think migrate 和 think seed 命令运行它：
-
-
-如果你的thinkphp5还没有安装migrate扩展包,请须前往安装才能使用。[点击了解](https://www.kancloud.cn/manual/thinkphp5_1/354133)
 
 
 
